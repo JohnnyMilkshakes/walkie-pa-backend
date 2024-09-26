@@ -1,5 +1,6 @@
 import { Router } from "express";
 import authRoutes from "./auth.js";
+import jobsRoutes from "./jobs.js"
 
 const router = Router();
 
@@ -8,5 +9,6 @@ router.get("/", (req, res) => {
 });
 
 router.use("/auth", authRoutes);
+router.use("/jobs", jobsRoutes)
 
 export default router;
