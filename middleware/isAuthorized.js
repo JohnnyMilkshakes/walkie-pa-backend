@@ -1,14 +1,29 @@
+import Job from "../models/job.js";
+
 async function isAuthorized(req, res, next) {
-  const jobId = req.params.jobId;
-  const userId = req.user.id;
+  try {
+    const jobId = req.params.jobId;
+    const userId = req.user._id;
+    let hasPermission = false;
 
-  // find if user is associated with the jobId
+    const job = await Job.findById(jobId);
 
-  if (!hasPermission) {
-    return res.status(403).send("User does not have the required permission");
+    if (job) {
+      if (job.createdBy.toString() === userId) {
+        hasPermission = true;
+      }
+    } else {
+        return res.status(404).send("Job not found");
+    }
+
+    if (!hasPermission) {
+      return res.status(403).send("User does not have the required permission");
+    }
+
+    next();
+  } catch (err) {
+    console.log(err);
   }
-
-  next();
 }
 
 export default isAuthorized;

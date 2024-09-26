@@ -8,11 +8,10 @@ const router = Router();
 router.use(verifyToken);
 
 router.post("/", controllers.createJob);
-router.get("/", controllers.getAllJobs);
+router.get("/", controllers.getAllUserJobs);
 
-router.use(isAuthorized);
-router.get("/:jobId", controllers.getJob);
-router.put("/:jobId", controllers.updateJob);
-router.delete("/:jobId", controllers.deleteJob);
+router.get("/:jobId", isAuthorized, controllers.getJob);
+router.put("/:jobId", isAuthorized, controllers.updateJob);
+router.delete("/:jobId", isAuthorized, controllers.deleteJob);
 
 export default router;
