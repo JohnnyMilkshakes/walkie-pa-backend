@@ -7,9 +7,8 @@ const router = Router({ mergeParams: true });
 // Apply `verifyToken` middleware to all routes
 router.use(verifyToken);
 
-router.post("/", controllers.createRentalHouse);
-router.get("/", controllers.getAllJobRentalHouses);
-
+router.post("/", isAuthorized, controllers.createRentalHouse);
+router.get("/", isAuthorized, controllers.getAllJobRentalHouses);
 router.get("/:rentalHouseId", isAuthorized, controllers.getRentalHouse);
 router.put("/:rentalHouseId", isAuthorized, controllers.updateRentalHouse);
 router.delete("/:rentalHouseId", isAuthorized, controllers.deleteRentalHouse);
