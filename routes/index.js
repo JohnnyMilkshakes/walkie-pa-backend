@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authRoutes from "./auth.js";
-import jobsRoutes from "./jobs.js"
+import jobsRoutes from "./jobs.js";
+import walkiesRoutes from "./walkies.js";
 
 const router = Router();
 
@@ -9,6 +10,7 @@ router.get("/", (req, res) => {
 });
 
 router.use("/auth", authRoutes);
-router.use("/jobs", jobsRoutes)
+router.use("/jobs", jobsRoutes);
+router.use("/jobs/:jobId/walkies", walkiesRoutes);
 
 export default router;
