@@ -4,7 +4,7 @@ import jobsRoutes from "./jobs.js";
 import walkiesRoutes from "./walkies.js";
 import rentalHousesRoutes from "./rental-houses.js";
 import departmentsRoutes from "./departments.js";
-import crewMembersRoutes from "./crew-members.js";
+// import crewMembersRoutes from "./crew-members.js";
 import { createWalkie } from "../controllers/walkies.js";
 
 const router = Router();
@@ -20,6 +20,6 @@ router.use("/jobs/:jobId/rental-houses", rentalHousesRoutes);
 router.post("/jobs/:jobId/rental-houses/:rentalHouseId/walkies", createWalkie);
 router.use("/jobs/:jobId/walkies", walkiesRoutes);
 router.use("/jobs/:jobId/departments", departmentsRoutes);
-router.use("/jobs/:jobId/crew-members", crewMembersRoutes);
+// router.use("/jobs/:jobId/crew-members", crewMembersRoutes);
 
 export default router;
