@@ -23,15 +23,15 @@ export const getAllJobCrewMembers = async (req, res) => {
       .select("_id")
       .lean();
 
-      console.log(departments)
+    console.log(departments);
     const departmentIds = departments.map((department) => department._id);
 
     const crewMembers = await CrewMember.find({
       department: { $in: departmentIds },
     }).populate({
-        path: "department",
-        select: "name"
-    })
+      path: "department",
+      select: "name",
+    });
 
     res.status(201).json(crewMembers);
   } catch (error) {
@@ -43,7 +43,6 @@ export const createCrewMember = async (req, res) => {
   const { departmentId } = req.params;
 
   try {
-    
     let department = await Department.findById(departmentId);
     if (!department) {
       res.status(400).json({ message: "Department not found" });
@@ -77,9 +76,9 @@ export const updateCrewMember = async (req, res) => {
     const updatedCrewMember = await crewMember.save();
 
     await updatedCrewMember.populate({
-        path: "department",
-        select: "name"
-    })
+      path: "department",
+      select: "name",
+    });
 
     // Send the updated job as the response
     res.status(200).json(updatedCrewMember);
