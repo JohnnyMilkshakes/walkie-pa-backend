@@ -7,7 +7,7 @@ export const getRentalHouse = async (req, res) => {
     if (rentalHouse) {
       res.status(200).json(rentalHouse);
     } else {
-      res.status(401).json({ error: "Job not found" });
+      res.status(401).json({ error: "Rental house not found" });
     }
   } catch (error) {
     res.status(400).json({ error: error.message });

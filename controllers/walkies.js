@@ -8,7 +8,7 @@ export const getWalkie = async (req, res) => {
     const walkie = await Walkie.findById(req.params.walkieId);
 
     if (walkie) {
-      res.status(200).json({ walkie });
+      res.status(200).json(walkie);
     } else {
       res.status(401).json({ error: "walkie not found" });
     }

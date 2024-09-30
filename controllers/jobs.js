@@ -1,5 +1,6 @@
 import Job from "../models/job.js";
 import User from "../models/user.js";
+import Department from "../models/department.js";
 
 export const getJob = async (req, res) => {
   try {
@@ -7,7 +8,7 @@ export const getJob = async (req, res) => {
     const job = await Job.findById(req.params.jobId);
 
     if (job) {
-      res.status(200).json({ job });
+      res.status(200).json(job);
     } else {
       res.status(401).json({ error: "Job not found" });
     }
@@ -34,6 +35,14 @@ export const createJob = async (req, res) => {
 
     if (user) {
       const newJob = await Job.create(req.body);
+
+      if (newJob) {
+        const defaultDepartment = await Department.create({
+            "name":"unassigend",
+            "job": newJob._id
+        });
+
+      }
 
       res.status(201).json(newJob);
     }

@@ -5,7 +5,7 @@ export const getDepartment = async (req, res) => {
     const department = await Department.findById(req.params.departmentId);
 
     if (department) {
-      res.status(200).json({ department });
+      res.status(200).json(department);
     } else {
       res.status(401).json({ error: "Department not found" });
     }

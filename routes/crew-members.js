@@ -7,10 +7,9 @@ const router = Router({ mergeParams: true });
 // Apply `verifyToken` middleware to all routes
 router.use(verifyToken);
 
-router.post("/", isAuthorized, controllers.createCrewMember);
 router.get("/", isAuthorized, controllers.getAllJobCrewMembers);
-router.get("/:departmentId", isAuthorized, controllers.getCrewMember);
-router.put("/:departmentId", isAuthorized, controllers.updateCrewMember);
-router.delete("/:departmentId", isAuthorized, controllers.deleteCrewMember);
+router.get("/:crewMemberId", isAuthorized, controllers.getCrewMember);
+router.put("/:crewMemberId", isAuthorized, controllers.updateCrewMember);
+router.delete("/:crewMemberId", isAuthorized, controllers.deleteCrewMember);
 
 export default router;
